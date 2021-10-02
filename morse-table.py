@@ -49,5 +49,38 @@ def morse_seq(text):
             seq = seq + morsetab[c]
     seq = seq + ([0] * 7)
     return seq
+    
+def morse_dotdash(text):
+    lastone = 0
+    onesrun = 0
+    zerorun = 0
+    output = ''
+    translated = '' #for debugging
+    for p in morse_seq(text):
+        if p == 0 and lastone == 1:
+            if onesrun > 1:
+                output += '-'
+            else:
+                output += '.'
+            onesrun = 0
+            zerorun = 1
+        if p == 1 and lastone == 1:
+            onesrun += 1
+            zerorun = 0
+        if p == 0 and lastone == 0:
+            zerorun += 1
+            if zerorun > 2:
+                zerorun = 0
+                onesrun = 0
+                output += ' '
+        lastone = p
+        translated += str(p)
+        #print(translated)
+    return output
 
-print(morse_seq('DE VE3IRR = The quick brown fox jumps over the lazy dog. = 1234567890 = .,?\'!/()&:;=+-_"$@ = DE VE3IRR'))
+#Called directly?
+if __name__ == '__main__':
+    #Not called with 'from importlib import import_module'
+    #m = import_module('morse-table')
+    print(morse_seq('DE VE3IRR = The quick brown fox jumps over the lazy dog. = 1234567890 = .,?\'!/()&:;=+-_"$@ = DE VE3IRR'))
+    print(morse_dotdash('DE VE3IRR = The quick brown fox jumps over the lazy dog. = 1234567890 = .,?\'!/()&:;=+-_"$@ = DE VE3IRR'))
