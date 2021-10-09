@@ -13,8 +13,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import os
 import smtplib
+import time
 from email.mime.text import MIMEText
+
 
 def mail(text):
     gmail_sender = 'your.account@gmail.com'
@@ -34,7 +37,6 @@ def mail(text):
     s.sendmail(gmail_sender, [recipient], msg.as_string())
     s.quit()
 
-import time, os
 
 filename = 'C:\\wsjtx2\\ALL.TXT'
 file = open(filename, 'r')
@@ -51,4 +53,3 @@ while True:
         file.seek(where)
     else:
         mail(newstuff)
-
