@@ -42,12 +42,15 @@ morsetab = {
         '@': [1,0,1,1,1,0,1,1,1,0,1,0,1,1,1,0,1,0,0,0]
 }
 
+
 def morse_seq(text):
     seq = [0] * 10
     for c in text:
         if c in morsetab:
-            seq = seq + morsetab[c]
-    seq = seq + ([0] * 7)
+            seq.extend(morsetab[c])
+    seq.extend([0] * 7)
     return seq
 
-print(morse_seq('DE VE3IRR = The quick brown fox jumps over the lazy dog. = 1234567890 = .,?\'!/()&:;=+-_"$@ = DE VE3IRR'))
+
+if __name__ == '__main__':
+    print(morse_seq('DE VE3IRR = The quick brown fox jumps over the lazy dog. = 1234567890 = .,?\'!/()&:;=+-_"$@ = DE VE3IRR'))
