@@ -46,8 +46,8 @@ morsetab = {
 def morse_seq(text):
     seq = [0] * 10
     for c in text:
-        if c.lower() in morsetab:
-            seq.extend(morsetab[c.lower()])
+        if c.upper() in morsetab:
+            seq.extend(morsetab[c.upper()])
     seq.extend([0] * 7)
     return seq
 
